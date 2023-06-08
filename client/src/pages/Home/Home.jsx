@@ -1,7 +1,9 @@
+import Header from "../../components/Header/Header";
+
 const Home = () => {
   return (
-    <div className="p-5">
-      <h1>Home Page</h1>
+    <div className="py-8 px-8">
+      <Header />
     </div>
   );
 };
