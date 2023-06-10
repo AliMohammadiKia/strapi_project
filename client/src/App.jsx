@@ -7,9 +7,9 @@ const App = () => {
 
   useEffect(() => {
     if (isDarkTheme) {
-      document.documentElement.setAttribute("data-theme", "dark");
-    } else {
       document.documentElement.setAttribute("data-theme", "light");
+    } else {
+      document.documentElement.setAttribute("data-theme", "dark");
     }
   }, [isDarkTheme]);
 

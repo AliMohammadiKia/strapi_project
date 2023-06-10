@@ -4,8 +4,11 @@ import { faMagnifyingGlass, faFilter } from "@fortawesome/free-solid-svg-icons";
 const SearchBox = () => {
   return (
     <div className="flex-1 flex flex-row-reverse gap-4 items-center">
-      <button className="btn btn-outline">
-        <FontAwesomeIcon icon={faFilter} className="text-gray-500 w-6 h-6" />
+      <button className="btn btn-outline btn-md border-gray-300 group hover:bg-gray-300 hover:border-gray-300">
+        <FontAwesomeIcon
+          icon={faFilter}
+          className="text-gray-500 w-6 h-6 group-hover:text-white"
+        />
       </button>
       <div className="w-8/12 relative flex flex-row-reverse items-center">
         <FontAwesomeIcon
