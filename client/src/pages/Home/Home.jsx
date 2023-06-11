@@ -1,19 +1,23 @@
 import Card from "../../components/Card/Card";
 import Header from "../../components/Header/Header";
+import Navbar from "../../components/Navbar/Navbar";
 import CategoryItems from "./CategoryItems";
 
 const Home = () => {
   return (
-    <div className="py-8 px-8">
-      <Header />
-      <CategoryItems />
-      <div className="mt-8 flex flex-wrap gap-4">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+    <div className="flex">
+      <Navbar />
+      <div className="py-8 px-8 w-11/12">
+        <Header />
+        <CategoryItems />
+        <div className="mt-8 flex flex-wrap gap-4">
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </div>
       </div>
     </div>
   );
