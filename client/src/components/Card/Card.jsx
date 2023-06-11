@@ -4,7 +4,7 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 const Card = () => {
   return (
-    <Link className="card card-compact w-1/5 bg-base-100 shadow-xl hover:scale-105 transition-all relative">
+    <Link className="card card-compact bg-base-100 shadow-xl hover:scale-105 transition-all relative">
       <figure className="h-64">
         <img
           src="/img/croissant.jpg"

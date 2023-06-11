@@ -8,7 +8,7 @@ const Home = () => {
     <div className="px-10 py-8 w-11/12">
       <Header />
       <CategoryItems />
-      <div className="mt-8 flex flex-wrap gap-4">
+      <div className="mt-8 grid grid-cols-5 gap-x-5 gap-y-8">
         <Card />
         <Card />
         <Card />
