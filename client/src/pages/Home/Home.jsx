@@ -5,19 +5,16 @@ import CategoryItems from "./CategoryItems";
 
 const Home = () => {
   return (
-    <div className="flex">
-      <Navbar />
-      <div className="py-8 px-8 w-11/12">
-        <Header />
-        <CategoryItems />
-        <div className="mt-8 flex flex-wrap gap-4">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-        </div>
+    <div className="px-10 py-8 w-11/12">
+      <Header />
+      <CategoryItems />
+      <div className="mt-8 flex flex-wrap gap-4">
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
       </div>
     </div>
   );
