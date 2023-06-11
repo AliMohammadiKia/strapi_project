@@ -1,5 +1,4 @@
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "../pages/Home/Home";
 import Notes from "../pages/Notes/Notes";
 import ShoppingCart from "../pages/ShoppingCart/ShoppingCart";
