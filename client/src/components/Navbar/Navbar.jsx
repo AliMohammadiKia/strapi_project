@@ -1,20 +1,48 @@
 import NavLinkItem from "./NavLinkItem";
+import useThemeDetector from "../../hooks/useThemeDetector";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   faHouse,
   faBookmark,
   faBagShopping,
+  faSun,
+  faMoon,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Navbar = () => {
+  const isDarkThemeSystem = useThemeDetector();
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme")
+      ? localStorage.getItem("theme")
+      : isDarkThemeSystem
+      ? "dark"
+      : "light"
+  );
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    document.documentElement.setAttribute("data-theme", localTheme);
+  }, [theme]);
+
   const links = [
     { to: "/", icon: faHouse },
     { to: "/notes", icon: faBookmark },
     { to: "/shopping-cart", icon: faBagShopping },
   ];
 
+  const handleChangeTheme = (e) => {
+    if (e.target.checked) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
+
   return (
-    <div className="w-1/12 h-screen bg-base shadow-md sticky top-0 left-0 flex flex-col items-center py-8">
+    <div className="w-1/12 h-screen bg-base shadow-md sticky top-0 left-0 flex flex-col items-center justify-between py-8">
       <Link to="/">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -26,13 +54,28 @@ const Navbar = () => {
           <path d="M401.3 49.9c-79.8 160.1-84.6 152.5-87.9 173.2l-5.2 32.8c-1.9 12-6.6 23.5-13.7 33.4L145.6 497.1c-7.6 10.6-20.4 16.2-33.4 14.6-40.3-5-77.8-32.2-95.3-68.5-5.7-11.8-4.5-25.8 3.1-36.4l148.9-207.9c7.1-9.9 16.4-18 27.2-23.7l29.3-15.5c18.5-9.8 9.7-11.9 135.6-138.9 1-4.8 1-7.3 3.6-8 3-.7 6.6-1 6.3-4.6l-.4-4.6c-.2-1.9 1.3-3.6 3.2-3.6 4.5-.1 13.2 1.2 25.6 10 12.3 8.9 16.4 16.8 17.7 21.1.6 1.8-.6 3.7-2.4 4.2l-4.5 1.1c-3.4.9-2.5 4.4-2.3 7.4.1 2.8-2.3 3.6-6.5 6.1zM230.1 36.4c3.4.9 2.5 4.4 2.3 7.4-.2 2.7 2.1 3.5 6.4 6 7.9 15.9 15.3 30.5 22.2 44 .7 1.3 2.3 1.5 3.3.5 11.2-12 24.6-26.2 40.5-42.6 1.3-1.4 1.4-3.5.1-4.9-8-8.2-16.5-16.9-25.6-26.1-1-4.7-1-7.3-3.6-8-3-.8-6.6-1-6.3-4.6.3-3.3 1.4-8.1-2.8-8.2-4.5-.1-13.2 1.1-25.6 10-12.3 8.9-16.4 16.8-17.7 21.1-1.4 4.2 3.6 4.6 6.8 5.4zM620 406.7L471.2 198.8c-13.2-18.5-26.6-23.4-56.4-39.1-11.2-5.9-14.2-10.9-30.5-28.9-1-1.1-2.9-.9-3.6.5-46.3 88.8-47.1 82.8-49 94.8-1.7 10.7-1.3 20 .3 29.8 1.9 12 6.6 23.5 13.7 33.4l148.9 207.9c7.6 10.6 20.2 16.2 33.1 14.7 40.3-4.9 78-32 95.7-68.6 5.4-11.9 4.3-25.9-3.4-36.6z" />
         </svg>
       </Link>
-      <ul className="mt-20 flex flex-col items-center gap-10">
+      <ul className="-mt-80 flex flex-col items-center gap-10">
         {links.map((link, index) => (
           <li key={index}>
             <NavLinkItem to={link.to} icon={link.icon} />
           </li>
         ))}
       </ul>
+      <label className="swap swap-rotate">
+        <input
+          type="checkbox"
+          onChange={handleChangeTheme}
+          checked={theme === "dark" ? true : false}
+        />
+        <FontAwesomeIcon
+          icon={faMoon}
+          className="swap-off text-2xl text-gray-400"
+        />
+        <FontAwesomeIcon
+          icon={faSun}
+          className="swap-on text-2xl text-gray-400"
+        />
+      </label>
     </div>
   );
 };
