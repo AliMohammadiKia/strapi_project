@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 const Card = ({ product }) => {
-  console.log(product);
   return (
     <Link className="card card-compact bg-base-100 shadow-xl hover:scale-105 transition-all relative">
       <figure className="h-64">
