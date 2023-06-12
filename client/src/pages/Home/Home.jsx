@@ -1,37 +1,25 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
 import Card from "../../components/Card/Card";
 import Header from "../../components/Header/Header";
-import Navbar from "../../components/Navbar/Navbar";
 import CategoryItems from "./CategoryItems";
+import useFetchData from "../../hooks/useFetchData";
 
 const Home = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get(
-        import.meta.env.VITE_API_BASE_URL + "/products?populate=*",
-        {
-          headers: {
-            Authorization: "Bearer " + import.meta.env.VITE_API_TOKEN,
-          },
-        }
-      );
-      setProducts(response.data.data);
-    };
-
-    fetchData();
-  }, []);
+  const { data, error, loading } = useFetchData("/products?populate=*");
 
   return (
     <div className="px-10 py-8 w-11/12">
       <Header />
       <CategoryItems />
       <div className="mt-8 grid grid-cols-5 gap-x-5 gap-y-8">
-        {products?.map((product) => (
-          <Card key={product.id} product={product} />
-        ))}
+        {loading ? (
+          <div className="flex">
+            <span className="loading loading-dots loading-lg bg-orange-500"></span>
+          </div>
+        ) : error ? (
+          "error, sorry I couldn't connect to the server!"
+        ) : (
+          data?.map((product) => <Card key={product.id} product={product} />)
+        )}
       </div>
     </div>
   );
