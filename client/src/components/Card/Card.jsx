@@ -2,25 +2,32 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
-const Card = () => {
+const Card = ({ product }) => {
+  console.log(product);
   return (
     <Link className="card card-compact bg-base-100 shadow-xl hover:scale-105 transition-all relative">
       <figure className="h-64">
         <img
-          src="/img/croissant.jpg"
+          src={
+            import.meta.env.VITE_BASE_URL +
+            product.attributes.image.data.attributes.url
+          }
           alt="Shoes"
           className="w-full h-full object-cover"
         />
       </figure>
       <div className="card-body">
-        <h2 className="card-title font-bold">Almond Brown Sugar Croissant</h2>
+        <h2 className="card-title font-bold">{product.attributes.title}</h2>
         <p className="text-gray-400 py-2">
-          Sweet croissant with topping almonds and brown sugar
+          {product.attributes.description.substring(0, 100)} ...
         </p>
         <div>
           <p className="text-2xl font-bold text-orange-500">
-            $12.98{" "}
-            <span className="text-lg text-slate-400 font-normal">/ 3pcs</span>
+            ${product.attributes.price}
+            <span className="text-lg text-slate-400 font-normal">
+              {" "}
+              / {product.attributes.pcs} pcs
+            </span>
           </p>
         </div>
       </div>
