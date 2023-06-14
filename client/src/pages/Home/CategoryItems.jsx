@@ -6,12 +6,17 @@ import {
   faIceCream,
 } from "@fortawesome/free-solid-svg-icons";
 import useFetchData from "../../hooks/useFetchData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const CategoryItems = () => {
+const CategoryItems = ({ handleChangeCategory }) => {
+  const [activeItem, setActiveItem] = useState({ id: 1, name: "Coffee" });
   const { data, error, loading } = useFetchData("/categories");
   const icons = [faMugHot, faStroopwafel, faBreadSlice, faIceCream];
-  const [activeItem, setActiveItem] = useState(1);
+
+  const handleClick = (id, name) => {
+    setActiveItem({ id, name });
+    handleChangeCategory(name);
+  };
 
   return (
     <div className="mt-8 flex gap-5">
@@ -28,8 +33,8 @@ const CategoryItems = () => {
             text={category.attributes.name}
             icon={icons[index]}
             id={category.id}
-            handleClick={(id) => setActiveItem(id)}
-            selectedItem={activeItem}
+            handleClick={(id, name) => handleClick(id, name)}
+            selectedItem={activeItem.id}
           />
         ))
       )}

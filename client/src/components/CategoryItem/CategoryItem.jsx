@@ -6,7 +6,7 @@ const CategoryItem = ({ text, icon, id, handleClick, selectedItem = 1 }) => {
       className={`btn ${
         id === selectedItem ? "btn-active" : "btn-outline"
       } btn-error gap-2 px-6`}
-      onClick={() => handleClick(id)}
+      onClick={() => handleClick(id, text)}
     >
       <FontAwesomeIcon icon={icon} className="text-lg" />
       {text ? text : "Category"}
